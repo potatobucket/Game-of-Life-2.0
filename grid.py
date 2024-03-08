@@ -39,21 +39,21 @@ class Grid:
         """
         Iterates through the grid and counts up how many neighboring cells are alive for each cell in the grid.
         """
-        for checkRow in range(self.rows - 1):
-            for checkColumn in range(self.columns - 1):
+        for checkRow in range(self.rows):
+            for checkColumn in range(self.columns):
                 self.cellArray[checkRow][checkColumn].neighbors = 0
                 for adjacentRow in range(-1, 2):
                     for adjacentColumn in range(-1, 2):
-                        if (self.cellArray[checkRow + adjacentColumn][checkColumn + adjacentRow].alive == True
-                            and self.cellArray[checkRow + adjacentColumn][checkColumn + adjacentRow] != self.cellArray[checkRow][checkColumn]):
+                        if (self.cellArray[(checkRow + adjacentColumn) % self.rows][(checkColumn + adjacentRow) % self.columns].alive == True
+                            and self.cellArray[(checkRow + adjacentColumn) % self.rows][(checkColumn + adjacentRow) % self.columns] != self.cellArray[checkRow][checkColumn]):
                             self.cellArray[checkRow][checkColumn].neighbors += 1
     
     def update_grid(self):
         """
         Updates the grid to the next generation and then updates the visual grid to that same thing. Double buffering. Y'know.
         """
-        for row in range(self.rows - 1):
-            for column in range(self.columns - 1):
+        for row in range(self.rows):
+            for column in range(self.columns):
                 if (self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors == 2
                     or self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors == 3):
                     pass
