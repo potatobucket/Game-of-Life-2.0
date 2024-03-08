@@ -1,3 +1,7 @@
+"""
+Handles all the stuff that a grid could want.
+"""
+
 import cell
 import numpy as np
 import os
@@ -67,6 +71,9 @@ class Grid:
         self.get_visual_data()
 
     def run_game_for(self, generations = 1000, framesPerSecond = 60):
+        """
+        Runs the game for the number of generations specified at the number of frames per second specified.
+        """
         for generation in range(generations + 1):
             os.system("cls")
             self.neighbor_check()
