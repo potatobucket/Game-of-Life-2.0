@@ -17,3 +17,9 @@ class Cell:
             return "The cell is dead"
         else:
             return "The cell is alive! Run!"
+    
+    def __repr__(self):
+        return f"{self.visual}"
+    
+    def __str__(self):
+        return f"{self.visual}"
