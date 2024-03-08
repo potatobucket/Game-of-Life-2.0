@@ -32,6 +32,8 @@ class Grid:
         for row in range(self.rows):
             for column in range(self.columns):
                 self.visualArray[row][column] = self.cellArray[row][column].visual
+        for visualRow in range(self.rows):
+            print(self.visualArray[visualRow])
     
     def neighbor_check(self):
         """
@@ -42,5 +44,31 @@ class Grid:
                 self.cellArray[checkRow][checkColumn].neighbors = 0
                 for adjacentRow in range(-1, 2):
                     for adjacentColumn in range(-1, 2):
-                        if self.cellArray[checkRow + adjacentColumn][checkColumn + adjacentRow].alive == True and self.cellArray[checkRow + adjacentColumn][checkColumn + adjacentRow] != self.cellArray[checkRow][checkColumn]:
+                        if (self.cellArray[checkRow + adjacentColumn][checkColumn + adjacentRow].alive == True
+                            and self.cellArray[checkRow + adjacentColumn][checkColumn + adjacentRow] != self.cellArray[checkRow][checkColumn]):
                             self.cellArray[checkRow][checkColumn].neighbors += 1
+    
+    def update_grid(self):
+        """
+        Updates the grid to the next generation and then updates the visual grid to that same thing. Double buffering. Y'know.
+        """
+        for row in range(self.rows - 1):
+            for column in range(self.columns - 1):
+                if (self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors == 2
+                    or self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors == 3):
+                    pass
+                if (self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors < 2
+                    or self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors > 3):
+                    self.cellArray[row][column].alive = False
+                    self.cellArray[row][column].visual = "▢"
+                if self.cellArray[row][column].alive == False and self.cellArray[row][column].neighbors == 3:
+                    self.cellArray[row][column].alive = True
+                    self.cellArray[row][column].visual = "▣"
+        self.get_visual_data()
+
+    def run_game_for(self, generations = 1000, framesPerSecond = 60):
+        for generation in range(generations + 1):
+            os.system("cls")
+            self.neighbor_check()
+            self.update_grid()
+            slp(1 / framesPerSecond)
