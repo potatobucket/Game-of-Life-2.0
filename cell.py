@@ -1,6 +1,13 @@
+"""
+Handles all the cell creation.
+"""
+
 import random as rndm
 
 class Cell:
+    """
+    A cell. When created it randomly determines if it is alive or dead.
+    """
     def __init__(self):
         self.alive = rndm.choice([True, False])
         self.neighbors = 0
@@ -13,6 +20,9 @@ class Cell:
     
     @property
     def life_status(self):
+        """
+        Returns a cell's life status (whether it is alive or dead).
+        """
         if self.alive == False:
             return "The cell is dead"
         else:
