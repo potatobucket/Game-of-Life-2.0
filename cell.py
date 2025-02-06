@@ -9,14 +9,14 @@ class Cell:
     A cell. When created it randomly determines if it is alive or dead.
     """
     def __init__(self):
-        self.alive = rndm.choice([True, False])
-        self.neighbors = 0
+        self.alive: bool = rndm.choice([True, False])
+        self.neighbors: int = 0
         if self.alive == False:
-            self.visual = "▢"
+            self.visual = "🌑"
         else:
-            self.visual = "▣"
-        self.x = 0
-        self.y = 0
+            self.visual = "🌕"
+        self.x: int = 0
+        self.y: int = 0
     
     @property
     def life_status(self):
