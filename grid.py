@@ -64,10 +64,12 @@ class Grid:
                 if (self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors < 2
                     or self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors > 3):
                     self.cellArray[row][column].alive = False
-                    self.cellArray[row][column].visual = "▢"
+                    #self.cellArray[row][column].visual = "▢"
+                    self.cellArray[row][column].visual = "🌑"
                 if self.cellArray[row][column].alive == False and self.cellArray[row][column].neighbors == 3:
                     self.cellArray[row][column].alive = True
-                    self.cellArray[row][column].visual = "▣"
+                    #self.cellArray[row][column].visual = "▣"
+                    self.cellArray[row][column].visual = "🌕"
         self.get_visual_data()
 
     def run_game_for(self, generations = 1000, framesPerSecond = 60):

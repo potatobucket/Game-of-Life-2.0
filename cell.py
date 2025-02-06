@@ -12,9 +12,11 @@ class Cell:
         self.alive = rndm.choice([True, False])
         self.neighbors = 0
         if self.alive == False:
-            self.visual = "▢"
+            #self.visual = "▢"
+            self.visual = "🌑"
         else:
-            self.visual = "▣"
+            #self.visual = "▣"
+            self.visual = "🌕"
         self.x = 0
         self.y = 0
     
