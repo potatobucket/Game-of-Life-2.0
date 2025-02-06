@@ -15,11 +15,11 @@ class Grid:
     being the same cell).
     """
     def __init__(self):
-        self.rows = int(input("How many rows?\n"))
-        self.columns = int(input("How many columns?\n"))
-        self.generations = int(input("How many generations would you like to simulate?\n"))
-        self.cellArray = np.full(shape = (self.rows, self.columns), fill_value = "").tolist()
-        self.visualArray = np.full(shape = (self.rows, self.columns), fill_value = "").tolist()
+        self.rows: int = int(input("How many rows?\n"))
+        self.columns: int = int(input("How many columns?\n"))
+        self.generations: int = int(input("How many generations would you like to simulate?\n"))
+        self.cellArray: np.ndarray = np.full(shape = (self.rows, self.columns), fill_value = "").tolist()
+        self.visualArray: np.ndarray = np.full(shape = (self.rows, self.columns), fill_value = "").tolist()
     
     def populate_grid_with_cells(self):
         """
@@ -64,15 +64,13 @@ class Grid:
                 if (self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors < 2
                     or self.cellArray[row][column].alive == True and self.cellArray[row][column].neighbors > 3):
                     self.cellArray[row][column].alive = False
-                    #self.cellArray[row][column].visual = "▢"
                     self.cellArray[row][column].visual = "🌑"
                 if self.cellArray[row][column].alive == False and self.cellArray[row][column].neighbors == 3:
                     self.cellArray[row][column].alive = True
-                    #self.cellArray[row][column].visual = "▣"
                     self.cellArray[row][column].visual = "🌕"
         self.get_visual_data()
 
-    def run_game_for(self, generations = 1000, framesPerSecond = 60):
+    def run_game_for(self, generations: int = 1000, framesPerSecond: int = 60):
         """
         Runs the game for the number of generations specified at the number of frames per second specified.
         """
